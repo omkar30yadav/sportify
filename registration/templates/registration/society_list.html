@@ -1,0 +1,31 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<h2>Societies and Their Coaches</h2>
+<div class="container">
+    <div class="row">
+        {% for society in societies %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ society.image.url }}" class="card-img-top" alt="{{ society.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ society.name }}</h5>
+                    <p><strong>Location:</strong> {{ society.location }}</p>
+                    <p><strong>Description:</strong> {{ society.description }}</p>
+                    <h6>Coaches:</h6>
+                    <ul>
+                        {% for coach in society.coaches.all %}
+                        <li>{{ coach.coach_name }} - {{ coach.title }}</li>
+                        {% empty %}
+                        <li>No coaches available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No societies found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

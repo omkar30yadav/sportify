@@ -1,0 +1,14 @@
+<!-- register_event.html -->
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<h2>Register for {{ event.name }}</h2>
+    <p><strong>Date:</strong> {{ event.date }}</p>
+    <p><strong>Registration Fee:</strong> ₹{{ event.registration_fee }}</p>
+
+    <form method="POST" action="{% url 'process_payment' event.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    
+{% endblock %}

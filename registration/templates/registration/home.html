@@ -1,0 +1,96 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="jumbotron text-center bg-primary text-black">
+    <h1>Welcome to Sportify</h1>
+    <p>Find and register for the best sports events near you!</p>
+
+    <!-- Show login message if user is authenticated -->
+    {% if user.is_authenticated %}
+        {% comment %} <p class="text-success">You are logged in as {{ user.username }}!</p> {% endcomment %}
+    {% else %}
+        <a href="/login" class="btn btn-light btn-lg">Login to Register</a>
+    {% endif %}
+</div>
+
+<!-- Upcoming Events Carousel Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Upcoming Events</h2>
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="3000"> <!-- 3 seconds interval -->
+        <div class="carousel-inner">
+            {% for event in events %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ event.image.url }}" class="d-block w-100" alt="{{ event.name }}" style="object-fit: cover; height: 400px;">
+                    <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5);"> <!-- Semi-transparent background -->
+                        <h5>{{ event.name }}</h5>
+                        <p>{{ event.date }} at {{ event.venue }}</p>
+                        <a href="{% url 'register_event' event.id %}" class="btn btn-primary">Register</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+
+
+<!-- How It Works Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">How It Works</h2>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <i class="fas fa-search fa-3x mb-3"></i>
+            <h4>Find Events</h4>
+            <p>Search for sports events happening near you.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fas fa-pencil-alt fa-3x mb-3"></i>
+            <h4>Register</h4>
+            <p>Sign up for your favorite events easily.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fas fa-trophy fa-3x mb-3"></i>
+            <h4>Participate</h4>
+            <p>Join the event and showcase your skills.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <p class="text-center mb-4">We’d love to hear from you! Please fill out the form below, and we’ll get in touch with you shortly.</p>
+
+    <form method="POST" class="contact-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Your Name <span class="text-danger">*</span></label>
+            <input type="text" name="name" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Your Email <span class="text-danger">*</span></label>
+            <input type="email" name="email" id="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Your Mobile No. <span class="text-danger">*</span></label>
+            <input type="text" name="mobile" id="mobile" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Your Message <span class="text-danger">*</span></label>
+            <textarea name="message" id="message" class="form-control" rows="2" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

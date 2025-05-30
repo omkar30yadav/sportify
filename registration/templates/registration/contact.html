@@ -1,0 +1,21 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Contact Us</h2>
+    <p class="text-center">We’d love to hear from you! Reach out to us via the details below or use the form to send a message.</p>
+
+    <!-- Display Company Contact Details -->
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h4>{{ company_info.name }}</h4>
+            <p>Email: <a href="mailto:{{ company_info.email }}">{{ company_info.email }}</a></p>
+            <p>Phone: <a href="tel:{{ company_info.phone }}">{{ company_info.phone }}</a></p>
+            <p>Mobile: <a href="tel:{{ company_info.mobile }}">{{ company_info.mobile }}</a></p>
+            <p>Address: {{ company_info.address }}</p>
+            <p>Website: <a href="https://{{ company_info.website }}" target="_blank">{{ company_info.website }}</a></p>
+        </div>
+    </div>
+
+
+{% endblock %}/*

@@ -1,0 +1,28 @@
+{% extends 'registration/base.html' %}
+{% load static %}  <!-- Load static files here -->
+
+{% block content %}
+<h2>Sports Venues</h2>
+<div class="container">
+    <div class="row">
+        {% for venue in venues %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if venue.image %}
+                <img src="{{ venue.image.url }}" class="card-img-top" alt="{{ venue.name }}">
+                {% else %}
+                <img src="{% static 'path/to/default/image.png' %}" class="card-img-top" alt="Default Image">  <!-- Placeholder image -->
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ venue.name }}</h5>
+                    <p><strong>Location:</strong> {{ venue.location }}</p>
+                    <p><strong>Description:</strong> {{ venue.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No sports venues found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

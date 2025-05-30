@@ -1,0 +1,21 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+<h2>Coaching Sessions</h2>
+<div class="container">
+    <div class="row">
+        {% for coaching in coachings %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ coaching.image.url }}" class="card-img-top" alt="{{ coaching.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ coaching.title }}</h5>
+                    <p><strong>Coach:</strong> {{ coaching.coach_name }}</p>
+                    <p>{{ coaching.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

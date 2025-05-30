@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #ff4500;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff6347;
+        }
+
+        .btn-outline {
+            background-color: #fff;
+            color: #ff4500;
+            border: 2px solid #ff4500;
+            margin-top: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: #ff4500;
+            color: #fff;
+        }
+
+        .success-icon {
+            font-size: 64px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">&#10004;</div> <!-- Success icon -->
+        <h2>Payment Successful!</h2>
+        <p>Your payment has been processed successfully. Thank you for registering!</p>
+        <p>Our team will contact you soon regarding further event details.</p>
+
+        <!-- Google Form Link, opens in a new tab -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSec4DGoIMGrS0SOlNDQtIw4xSctfAHoF6QGJHAZ5pzeDbjFeA/viewform?usp=sf_link"class="btn" target="_blank">Fill in Team/Individual Details</a>
+        <br>
+        <a href="{% url 'event_list' %}" class="btn btn-outline">Back to Events</a>
+    </div>
+</body>
+</html>
