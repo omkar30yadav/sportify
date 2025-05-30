@@ -254,3 +254,12 @@ def contact(request):
         'website': 'www.sportify.com'
     }
     return render(request, 'registration/contact.html', {'company_info': company_info})
+
+from django.contrib.auth.models import User
+
+def create_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword123')
+        return HttpResponse("Admin created")
+    else:
+        return HttpResponse("Admin already exists")
